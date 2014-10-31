@@ -1,1 +1,55 @@
 \section*{Aufgabe 5}
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|}
+\hline 
+Anfrage & System A & System B & A $ - $ B & Vorzeichen\\ 
+\hline 
+1 & 0.4 & 0.2 & 0.2 & $+$\\ 
+\hline 
+2 & 0.8 & 0.8 & 0 & \\ 
+\hline 
+3 & 0.8 & 0.2 & 0.6 & $+$\\ 
+\hline 
+4 & 0.8 & 0.2 & 0.6 & $+$\\ 
+\hline 
+5 & 0.6 & 0.2 & 0.4 & $+$\\ 
+\hline 
+6 & 0.6 & 0.4 & 0.2 & $+$\\ 
+\hline 
+7 & 0.4 & 0.2 & 0.2 & $+$\\ 
+\hline 
+8 & 0.4 & 0 & 0.4 & $+$\\ 
+\hline 
+9 & 0.6 & 0.6 & 0 & \\ 
+\hline 
+10 & 0.4 & 0.2 & 0.2 & $+$\\ 
+\hline 
+11 & 0.6 & 0.2 & 0.4 & $+$\\ 
+\hline 
+12 & 0.4 & 0.2 & 0.2 & $+$\\ 
+\hline 
+13 & 0.6 & 0 & 0.6 & $+$\\ 
+\hline 
+14 & 0.8 & 0.4 & 0.4 & $+$\\ 
+\hline 
+15 & 0.2 & 0.4 & $ - $ 0.2 & $-$\\ 
+\hline 
+16 & 0.6 & 0.4 & 0.2 & $+$\\ 
+\hline 
+17 & 0.6 & 0 & 0.6 & $+$\\ 
+\hline 
+18 & 0.4 & 0.2 & 0.2 & $+$\\ 
+\hline 
+19 & 0.4 & 0.6 & $ - $ 0.2 & $-$\\ 
+\hline 
+20 & 0.6 & 0.2 & 0.4 & $+$\\ 
+\hline 
+\end{tabular}
+\end{center}
+\vspace{1cm}
+Vorgehen:\\
+Zuerst wird das Effektivitätsmaß P$@$5 für jede Anfrage und beide Systeme berechnet. Dies geschieht einfach in dem man die Anzahl an relevanten Dokumenten durch die Gesamtzahl an Dokumenten teilt. Da die Hypothese ist, dass System A besser sei als System B, wird der Vorzeichentest "zu Gute" von A angewendet. Es wird also geprüft wann P$@$5 bei A größer ist als bei B, also positiv und wann es kleiner ist, also negativ. 
+Die Teststatistik für diesen Test beträgt 16.\\
+Der $P$-Wert liegt bei 0,0059. (k $\ge$ 16 in der Tabelle der Binomialverteilung)\\
+Interpretation: In 16 von 20 Fällen ist System A besser als System B, wobei eine Irrtumswahrscheinlichkeit von ca. 0,6 \% anzunehmen ist.\\
+Das Problem beim Effektivitätsmaß P$@$R ist, dass die Verteilung innerhalb der Ränge nicht berücksichtigt wird.\\Bsp: Bei P$A$5: Eine Anfrage mit einem relevantem Dokument an Rang 1 und sonst nicht relevanten Dokumenten ist genauso gut wie eine Anfrage mit einem relevantem Dokument an Rang 5 und sonst nicht relevanten Dokumenten.\\
