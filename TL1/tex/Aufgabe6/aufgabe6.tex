@@ -1,1 +1,24 @@
 \section*{Aufgabe 6}
+In diesem Fall bezeichnet man die Mails die tatsächlich Spam sind als \glqq relevant\grqq ($ A$) und diejenigen die kein Spam sind als \glqq nicht relevant\grqq ($ \overline{A}$). Als Spam erkannte Mails wären \glqq gefundene\grqq ($ B$) und nicht als Spam erkannte Mails \glqq nicht gefundene\grqq ($ \overline{B}$) Dokumente.\\
+Die Berechnung von Precision und Recall sähe dann wie folgt aus:\\
+\ \\
+$Recall = \frac{|A \cap B|}{|A|} $\\
+$Precision = \frac{|A \cap B|}{|B|}$\\
+\ \\
+Das ergibt im Fall unseres IR-Systems folgende Werte für\\
+$Recall = \frac{82}{113} = 0.7257$\\
+$Precision = \frac{82}{106} = 0.7736$\\
+\ \\
+Wir \glqq finden\grqq  also ca. 72,57 \% der gesamten Spam-Mails und 77,36 \% der von uns als Spam erkannten Mails sind tatsächlich auch Spam. Im Praxisfall wäre der Precision-Wert für uns eher unzufriedenstellend wenn man sich überlegt, dass man ca. jede vierte Mail aus dem Spam-Filter \glqq ziehen\grqq  müsste. In einem solchen Fall sollte man also versuchen eher den Precision-Wert zu maximieren und Einbußen beim Recall hinzunehmen.
+\ \\
+\begin{center}
+\begin{tabular}{|S{c}|S{c}|S{c}|}
+\hline 
+$A \cap B = 188$ & $A = 113 $ & $\overline{A} = 75 $ \\ 
+\hline 
+$B = 106$ & $A \cap B = 82 $ & $\overline{A} \cap B = 24$ \\ 
+\hline 
+$\overline{B} = 82$ & $A \cap \overline{B} = 31 $ & $\overline{A} \cap \overline{B} = 51 $ \\ 
+\hline 
+\end{tabular}
+\end{center}
