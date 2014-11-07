@@ -7,7 +7,7 @@ $d_{1Katze} =\frac{(\log_{2}(f_{1Katze}) + 1) * \log_{2}\frac{N}{n_{k}}}{\sqrt{\
 $d_{1Maus} =$ nicht in $D_{1}$ enthalten \\
 %\frac{(\log_{2}(f_{1Maus}) + 1) * \log_{2}\frac{N}{n_{k}}}{\sqrt{\sum_{l=1}^{t}((\log_{2}(f_{1l}) + 1) * \log_{2} \frac{N}{n_{l}})^{2}}} = \frac{(\log_{2}(0) + 1) * \log_{2}\frac{100}{3}}{\sqrt{\sum_{l=1}^{t}((\log_{2}(f_{1l}) + 1) * \log_{2} \frac{100}{3})^{2}}} =\frac{-infinity}{•}$ \\%
 \\ \
-$Cosine(D_{1}, Q) = \frac{\sum_{j=1}^{t}d_{1j}q_{j}}{\sqrt{\sum_{j=1}^{t}d_{1j}^{2}} * \sqrt{\sum_{j=1}^{t}q_{j}^{2}}}$ \\
+$Cosine(D_{1}, Q) = \frac{\sum_{j=1}^{t}d_{1j}q_{j}}{\sqrt{\sum_{j=1}^{t}d_{1j}^{2}} * \sqrt{\sum_{j=1}^{t}q_{j}^{2}}} = \frac{1,3981}{0,99998 * \sqrt{2}} = 0,98863$ \\
 \ \\
 \ \\
 $d_{2Hund} =$ nicht in $D_{2}$ enthalten \\
@@ -17,4 +17,6 @@ $d_{2Katze} =\frac{(\log_{2}(f_{2Katze}) + 1) * \log_{2}\frac{N}{n_{k}}}{\sqrt{\
 \ \\ 
 $d_{2Maus} =\frac{(\log_{2}(f_{2Maus}) + 1) * \log_{2}\frac{N}{n_{k}}}{\sqrt{\sum_{l=1}^{t}((\log_{2}(f_{2l}) + 1) * \log_{2} \frac{N}{n_{l}})^{2}}} = \frac{(\log_{2}(1) + 1) * \log_{2}\frac{100}{3}}{\sqrt{\sum_{l=1}^{t}((\log_{2}(f_{2l}) + 1) * \log_{2} \frac{100}{3})^{2}}} =\frac{5.0588}{5.5662} = 0,9088$ \\
 \ \\
-$Cosine(D_{2}, Q) = \frac{\sum_{j=1}^{t}d_{2j}q_{j}}{\sqrt{\sum_{j=1}^{t}d_{2j}^{2}} * \sqrt{\sum_{j=1}^{t}q_{j}^{2}}}$
+$Cosine(D_{2}, Q) = \frac{\sum_{j=1}^{t}d_{2j}q_{j}}{\sqrt{\sum_{j=1}^{t}d_{2j}^{2}} * \sqrt{\sum_{j=1}^{t}q_{j}^{2}}} = \frac{1,3259}{0.99994 * \sqrt{2}} = 0,93761$\\
+\ \\
+Da $Cosine(D_{1}, Q) > Cosine(D_{2}, Q)$ wird $D_{1}$ vor $D_{2}$ gerankt.
