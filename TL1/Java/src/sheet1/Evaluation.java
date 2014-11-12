@@ -84,6 +84,8 @@ public class Evaluation {
 
 		avgNDCG_at_10 = calculateAvgNDCG_at_10();
 
+		avgBPREF = calculateAvgBPREF();
+
 		// Ausgabe der Ergebnisse
 		printResults();
 	}
@@ -244,6 +246,49 @@ public class Evaluation {
 
 		return avg / n; // avgNDCG@10
 
+	}
+
+	private double calculateAvgBPREF() {
+
+		int maxR = 0;
+		int notR = 0;
+		List<Double> BPREF = new ArrayList<Double>();
+
+		for (List<Integer> query : relevanzTable) {
+			maxR = 0;
+			for (Integer r : query) {
+				maxR += r;
+			}
+			double Ndr = 0;
+			double currentR = 0;
+			List<Double> prefs = new ArrayList<Double>();
+			for (int i = 0; i < query.size(); ++i) {
+				if (query.get(i) == 1) {
+					Ndr = (i + 1) - currentR;
+					prefs.add(1d - (Ndr / maxR));
+				} else {
+					notR++;
+					if (notR > maxR) {
+						break;
+					}
+				}
+				currentR += query.get(i);
+
+			}
+
+			double sum = 0d;
+			for (Double d : prefs) {
+				sum += d;
+			}
+			BPREF.add(sum / maxR);
+
+		}
+
+		double sum = 0d;
+		for (Double d : BPREF) {
+			sum += d;
+		}
+		return sum / BPREF.size();
 	}
 
 	// vgl. Aufgabenstellung, bereits implementiert
