@@ -2,4 +2,11 @@
 
 \subsection*{a)}
 
+$BM25(Q, D) = \sum_{i:q_{i}\in Q} log \frac{N-n_{i}+0,5}{n_{i}+0,5}*\frac{(k_{1}+1)f_{d,i}}{K+f{d,i}}*\frac{(k_{2}+1)f_{q,i}}{k_{2}+f{q,i}} =$ \\
+$log \frac{250000-4000+0,5}{4000+0,5}*\frac{(1,2+1)10}{0,975+10}*\frac{(125+1)1}{125+1} + log \frac{250000-2000+0,5}{2000+0,5}*\frac{(1,2+1)20}{0,975+20}*\frac{(125+1)1}{125+1} =$\\
+$log (61,4924 * 2,0046 * 1) + log (123,9693 * 2,0977 * 1) =$ \\
+$4,8144 + 5,5609 = 10,3753$
+
 \subsection*{b)}
+
+Ein Einfügen von Bamberg wirkt sich stärker aus, da der zu multiplizierende Faktor $\frac{N-n_{i}+0,5}{n_{i}+0,5}$ in diesem Fall deutlich größer ist.
