@@ -102,16 +102,19 @@ public class CacmIndexer {
 
 		doc = new Document();
 		int counter = 1;
-		String content = null;
-		String line = null;
-		String title = null;
-		String id = null;
+		String content = "";
+		String line = "";
+		String title = "";
+		String id = "";
 		boolean idTest = false;
 		boolean contentTest = false;
 		boolean titleTest = false;
+		boolean tooFar = false;
 		while (scanner.hasNextLine()) {
-
-			line = scanner.nextLine();
+			
+			if(!tooFar) line = scanner.nextLine();
+			tooFar = false;
+			
 			if (line.startsWith(".I")) {
 				if (idTest == true) {
 					doc.add(new TextField(ID, id, Field.Store.YES));
@@ -125,11 +128,32 @@ public class CacmIndexer {
 				idTest = true;
 			}
 			if (line.startsWith(".T")) {
-				title = scanner.nextLine();
+				while(scanner.hasNextLine()){
+					String tmp = scanner.nextLine();
+					if(tmp.startsWith(".")){
+						line = tmp;
+						tooFar = true;
+						break;
+					}
+					else{
+						title+=tmp;
+					}
+				}
+				
 				titleTest = true;
 			}
 			if (line.startsWith(".W")) {
-				content = scanner.nextLine();
+				while(scanner.hasNextLine()){
+					String tmp = scanner.nextLine();
+					if(tmp.startsWith(".")){
+						line = tmp;
+						tooFar = true;
+						break;
+					}
+					else{
+						content+=tmp;
+					}
+				}
 				contentTest = true;
 			}
 
@@ -146,6 +170,9 @@ public class CacmIndexer {
 				System.out.println("Content: " + content + "\nID: " + id
 						+ "\nTITLE: " + title);
 				System.out.println("Write Document " + counter++);
+				content = "";
+				title = "";
+				id = "";
 			}
 
 		}
