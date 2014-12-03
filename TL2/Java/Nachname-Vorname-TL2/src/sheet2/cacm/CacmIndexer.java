@@ -7,6 +7,8 @@ import java.util.Scanner;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
@@ -30,12 +32,11 @@ public class CacmIndexer {
 	// IndexWriter fuer den schreibenden Zugriff
 	public IndexWriter writer;
 
-	// bestimmt den verwendeten Analyzer
+	// bestimmt den verwendeten Analyzer //TODO: change to false
 	public static boolean useStandardAnalyzer = false;
 
 	// Konstruktor
-	public CacmIndexer(String indexDir, Analyzer analyzer)
-			throws IOException {
+	public CacmIndexer(String indexDir, Analyzer analyzer) throws IOException {
 		Directory dir = FSDirectory.open(new File(indexDir));
 
 		this.analyzer = analyzer;
@@ -80,7 +81,7 @@ public class CacmIndexer {
 
 		File f = new File(dataDir);
 		indexFile(f);
-		
+
 		return writer.numDocs(); // 5
 	}
 
@@ -99,13 +100,58 @@ public class CacmIndexer {
 		// Lucene's document representation
 		Document doc = null;
 
+		doc = new Document();
+		int counter = 1;
+		String content = null;
+		String line = null;
+		String title = null;
+		String id = null;
+		boolean idTest = false;
+		boolean contentTest = false;
+		boolean titleTest = false;
 		while (scanner.hasNextLine()) {
 
-			String line = (String) scanner.nextLine();
+			line = scanner.nextLine();
+			if (line.startsWith(".I")) {
+				if (idTest == true) {
+					doc.add(new TextField(ID, id, Field.Store.YES));
+					doc.add(new TextField(TITLE, title, Field.Store.YES));
+					writer.addDocument(doc);
+					doc = new Document();
+					idTest = false;
+					titleTest = false;
+				}
+				id = line.replace(".I", "");
+				idTest = true;
+			}
+			if (line.startsWith(".T")) {
+				title = scanner.nextLine();
+				titleTest = true;
+			}
+			if (line.startsWith(".W")) {
+				content = scanner.nextLine();
+				contentTest = true;
+			}
 
-			// TODO: hier bitte implementieren
+			if (contentTest && titleTest && idTest) {
+				doc.add(new TextField(ID, id, Field.Store.YES));
+				doc.add(new TextField(TITLE, title, Field.Store.YES));
+				doc.add(new TextField(CONTENT, content, Field.Store.YES));
+				writer.addDocument(doc);
+				doc = new Document();
+				idTest = false;
+				titleTest = false;
+				contentTest = false;
+				
+				System.out.println("Content: " + content + "\nID: " + id
+						+ "\nTITLE: " + title);
+				System.out.println("Write Document " + counter++);
+			}
+
 		}
-		
+
+		scanner.close();
 		// TODO: hier bitte implementieren
 	}
 }
+
