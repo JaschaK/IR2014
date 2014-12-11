@@ -7,12 +7,23 @@ import java.util.List;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.queryparser.classic.QueryParser;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.search.similarities.BM25Similarity;
 import org.apache.lucene.search.similarities.DefaultSimilarity;
 import org.apache.lucene.search.similarities.LMDirichletSimilarity;
 import org.apache.lucene.search.similarities.LMJelinekMercerSimilarity;
 import org.apache.lucene.search.similarities.Similarity;
+import org.apache.lucene.store.Directory;
+import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.util.Version;
 
 public class CacmSearcher {
 
@@ -26,11 +37,11 @@ public class CacmSearcher {
 	public static void main(String[] args) throws IllegalArgumentException,
 			IOException, ParseException {
 
-		//Zeichenkette des Indexverzeichnisses
+		// Zeichenkette des Indexverzeichnisses
 		String indexDir = null;// 1
-		//Praefix der TREC-Dateinamen 
+		// Praefix der TREC-Dateinamen
 		String outName = null;
-		//der verwendete Analyzer
+		// der verwendete Analyzer
 		Analyzer analyzer = null;
 
 		if (useStandardAnalyzer) {
@@ -55,8 +66,8 @@ public class CacmSearcher {
 			StringBuilder builder = search(indexDir, sim, analyzer);
 			System.err.println("cacm-" + sim.toString() + "-"
 					+ analyzer.toString() + ".trec");
-			FileWriter fw = new FileWriter(new File("cacm/cacm-" + sim.toString()
-					+ "-" + outName + ".trec"));
+			FileWriter fw = new FileWriter(new File("cacm/cacm-"
+					+ sim.toString() + "-" + outName + ".trec"));
 			fw.write(builder.toString());
 			fw.close();
 		}
@@ -71,13 +82,39 @@ public class CacmSearcher {
 		System.out.println("#queries: " + queries.size());
 
 		StringBuilder builder = null;
+		builder = new StringBuilder();
 
-		//TODO hier bitte implementieren!
-		
-		if (builder == null){
-			throw new RuntimeException("Cannot write TREC file without content!");
+		Directory dir = FSDirectory.open(new File(indexDir));
+
+		IndexReader ir = DirectoryReader.open(dir);
+		IndexSearcher is = new IndexSearcher(ir);
+
+		QueryParser parser  = new QueryParser("content", analyzer);
+
+		long qnr = 0;
+		for (String q : queries) {
+			qnr++;
+			System.out.println(qnr);
+			System.out.println(q);
+			Query query = parser.parse(q);
+			TopDocs hits = is.search(query, 1000);
+
+			long rank = 0;
+			for (ScoreDoc scoreDoc : hits.scoreDocs) {
+				rank++;
+				Document doc = is.doc(scoreDoc.doc);
+				builder.append(qnr + " 1 " + doc.get("docid") + " " + rank + " "+ ""/*hier noch irgentwoher die sims bekommen ????*/);
+			}
+
 		}
-		
+
+		// TODO hier bitte implementieren!
+
+//		if (builder == null) {
+//			throw new RuntimeException(
+//					"Cannot write TREC file without content!");
+//		}
+
 		return builder;
 	}
 }
