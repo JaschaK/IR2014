@@ -23,7 +23,6 @@ import org.apache.lucene.search.similarities.LMJelinekMercerSimilarity;
 import org.apache.lucene.search.similarities.Similarity;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
-import org.apache.lucene.util.Version;
 
 public class CacmSearcher {
 
@@ -94,26 +93,20 @@ public class CacmSearcher {
 		long qnr = 0;
 		for (String q : queries) {
 			qnr++;
-			System.out.println(qnr);
-			System.out.println(q);
-			Query query = parser.parse(q);
+			Query query;// = parser.parse(q);
+			query  = parser.createPhraseQuery("content", q);
 			TopDocs hits = is.search(query, 1000);
 
 			long rank = 0;
 			for (ScoreDoc scoreDoc : hits.scoreDocs) {
 				rank++;
 				Document doc = is.doc(scoreDoc.doc);
-				builder.append(qnr + " 1 " + doc.get("docid") + " " + rank + " "+ ""/*hier noch irgentwoher die sims bekommen ????*/);
+				builder.append(qnr + " 1 " + doc.get("docid") + " " + rank + " "+ "\n");
 			}
 
 		}
 
-		// TODO hier bitte implementieren!
 
-//		if (builder == null) {
-//			throw new RuntimeException(
-//					"Cannot write TREC file without content!");
-//		}
 
 		return builder;
 	}
