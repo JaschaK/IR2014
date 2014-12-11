@@ -41,13 +41,22 @@ public class CacmHelper {
 	// Methode zur Generierung der QREL-Datei
 	public static StringBuilder generateQRels(String filename)
 			throws IOException {
-
+		
 		StringBuilder builder = new StringBuilder();
 		
 		Scanner scanner = new Scanner(new File(filename));
-
-		//TODO hier bitte implementieren!
-
+		
+		String qrelLine;
+		String[] qrelTookens;
+		
+		while(scanner.hasNextLine()){
+			qrelLine = scanner.nextLine();
+			qrelTookens = qrelLine.split(" ");
+			
+			builder.append(qrelTookens[0]+" 0 "+qrelTookens[1]+ " 1\n" );
+			
+		}
+		
 		scanner.close();
 
 		return builder;
