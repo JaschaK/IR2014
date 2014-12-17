@@ -1,0 +1,27 @@
+\section*{Aufgabe 1}
+
+\subsection*{Maximum-Likelihood-Schätzung}
+
+$P(Q|D_{1}) = \prod_{i=1}^{n} \frac{f_{1,i}}{D_{1}} = \frac{4}{80} * \frac{2}{80} * \frac{0}{80} = 0$ \\
+$P(Q|D_{2}) = \prod_{i=1}^{n} \frac{f_{1,i}}{D_{2}} = \frac{1}{40} * \frac{3}{40} * \frac{4}{40} = \frac{12}{40^{3}} = 1,875 * 10^{-4}$ \\
+
+Es wird daher $D_{2}$ vor $D_{1}$ gerankt.
+
+\subsection*{Jelinek-Mercer Glättung}
+
+$P(Q|D_{1}) = \sum_{i=1}^{n} log((0,7 * \frac{f_{q_{i}1}}{|D_{1}|} + 0,3 * \frac{c_{q_{i}}}{|C|} = ln (0,0354) + ln (0,0295) + ln (0,04) = -3.3410 - 3,5234 - 3,2189 = -10,0833$\\
+
+$P(Q|D_{2}) = \sum_{i=1}^{n} log((0,7 * \frac{f_{q_{i}2}}{|D_{2}|} + 0,3 * \frac{c_{q_{i}}}{|C|} = 
+ln(0,0179) + ln(0,0645) + ln(0,11) = -4,023 -2,741 -2,207 = -8,834$\\
+
+Es wird daher $D_{2}$ vor $D_{1}$ gerankt.
+
+\subsection*{Dirichlet-Glättung}
+
+$P(Q|D_{1}) =  \sum_{i=1}^{n} ln \frac{f_{q_{i}1} + 150 * \frac{c_{q_{i}}}{|C|}}{|D_{1}| + 150} = 
+ln(0,0183) + ln(0,0348) + ln(0,087) = -4,0009 -3,3581 -2,4418 = -9,8008$\\
+
+$P(Q|D_{1}) =  \sum_{i=1}^{n} ln \frac{f_{q_{i}2} + 150 * \frac{c_{q_{i}}}{|C|}}{|D_{2}| + 150} =
+ln(0,0063) + ln(0,0474) + ln(0,1263) = -5,0672 - 3,0491 - 2,0691 = - 10,1854$\\
+
+Es wird daher $D_{1}$ vor $D_{2}$ gerankt.
