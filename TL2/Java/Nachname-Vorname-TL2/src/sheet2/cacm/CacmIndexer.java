@@ -33,7 +33,7 @@ public class CacmIndexer {
 	public IndexWriter writer;
 
 	// bestimmt den verwendeten Analyzer //TODO: change to false
-	public static boolean useStandardAnalyzer = false;
+	public static boolean useStandardAnalyzer = true;
 
 	// Konstruktor
 	public CacmIndexer(String indexDir, Analyzer analyzer) throws IOException {

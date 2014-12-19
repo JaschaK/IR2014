@@ -70,6 +70,7 @@ public class CacmSearcher {
 			fw.write(builder.toString());
 			fw.close();
 		}
+		
 	}
 
 	// implementiert die eigentliche Suche auf Basis mehrerer Felder
@@ -78,7 +79,7 @@ public class CacmSearcher {
 
 		// lies die Anfragen ein
 		List<String> queries = CacmHelper.readQueries(path2queries);
-		System.out.println("#queries: " + queries.size());
+		//System.out.println("#queries: " + queries.size());
 
 		StringBuilder builder = null;
 		builder = new StringBuilder();
@@ -93,7 +94,7 @@ public class CacmSearcher {
 		long qnr = 0;
 		for (String q : queries) {
 			qnr++;
-			Query query;// = parser.parse(q);
+			Query query;
 			query  = parser.createPhraseQuery("content", q);
 			TopDocs hits = is.search(query, 1000);
 
