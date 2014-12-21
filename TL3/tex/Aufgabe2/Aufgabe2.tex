@@ -1,0 +1,38 @@
+\section*{Aufgabe 2}
+Anmerkung: mehrfache Links zum gleichen Ziel werden nur einfach gezählt (siehe Vorlesung).
+\subsubsection*{0. Iteration}
+Gleichverteilungsannahme zwischen allen 5 Seiten:
+$PR(A) = PR(B) = PR(C) = PR(D) = PR(E) = 0,2$
+
+\subsection*{1. Iteration}
+$PR(A) = \frac{\lambda}{N} + (1-\lambda)  (\frac{PR(B)}{L_{B}} + \frac{PR(E)}{L_{E}}) = \frac{0.15}{10} + 0,85 * (\frac{0.2}{3} + \frac{0.2}{2}) = 0.1567$ 
+\\
+$PR(B) = \frac{\lambda}{N} + (1-\lambda)  (\frac{PR(A)}{L_{A}}) = \frac{0.15}{10} + 0,85 * (\frac{0.2}{3}) = 0.0717$
+\\
+$PR(C) = \frac{\lambda}{N} + (1-\lambda)  (\frac{PR(A)}{L_{A}} + \frac{PR(B)}{L_{B}} + \frac{PR(D)}{L_{D}}) = \frac{0.15}{10} + 0,85 * (\frac{0.2}{3} + \frac{0.2}{3} + \frac{0.2}{1}) = 0.2983$ 
+\\ 
+$PR(D) = \frac{\lambda}{N} + (1-\lambda)  (\frac{PR(A)}{L_{A}} + \frac{PR(C)}{L_{C}} + \frac{PR(E)}{L_{E}}) = \frac{0.15}{10} + 0,85 * (\frac{0.2}{3} + \frac{0.2}{1} + \frac{0.2}{1}) = 0.4117$ 
+\\
+$PR(E) = \frac{\lambda}{N} + (1-\lambda)  \frac{PR(B)}{L_{B}} = \frac{0.15}{10} + 0,85 * (\frac{0.2}{3}) = 0.0717$
+
+\subsection*{2. Iteration}
+ $PR(A) = \frac{\lambda}{N} + (1-\lambda)  (\frac{PR(B)}{L_{B}} + \frac{PR(E)}{L_{E}}) = \frac{0.15}{10} + 0,85 * (\frac{0.0717}{3} + \frac{0.0717}{2}) = 0.0658$ 
+\\
+$PR(B) = \frac{\lambda}{N} + (1-\lambda)  (\frac{PR(A)}{L_{A}}) = \frac{0.15}{10} + 0,85 * (\frac{0.1567}{3}) = 0.0594$
+\\
+$PR(C) = \frac{\lambda}{N} + (1-\lambda)  (\frac{PR(A)}{L_{A}} + \frac{PR(B)}{L_{B}} + \frac{PR(D)}{L_{D}}) = \frac{0.15}{10} + 0,85 * (\frac{0.1567}{3} + \frac{0.0717}{3} + \frac{0.4117}{1}) = 0.4297$ 
+\\ 
+$PR(D) = \frac{\lambda}{N} + (1-\lambda)  (\frac{PR(A)}{L_{A}} + \frac{PR(C)}{L_{C}} + \frac{PR(E)}{L_{E}}) = \frac{0.15}{10} + 0,85 * (\frac{0.1567}{3} + \frac{0.2983}{1} + \frac{0.0717}{1}) = 0.3739$ 
+\\
+$PR(E) = \frac{\lambda}{N} + (1-\lambda)  \frac{PR(B)}{L_{B}} = \frac{0.15}{10} + 0,85 * (\frac{0.0717}{3}) = 0.0353$
+
+\subsection*{3. Iteration}
+ $PR(A) = \frac{\lambda}{N} + (1-\lambda)  (\frac{PR(B)}{L_{B}} + \frac{PR(E)}{L_{E}}) = \frac{0.15}{10} + 0,85 * (\frac{0.0594}{3} + \frac{0.0353}{2}) = 0.0468$ 
+\\
+$PR(B) = \frac{\lambda}{N} + (1-\lambda)  (\frac{PR(A)}{L_{A}}) = \frac{0.15}{10} + 0,85 * (\frac{0.0658}{3}) = 0.0336$
+\\
+$PR(C) = \frac{\lambda}{N} + (1-\lambda)  (\frac{PR(A)}{L_{A}} + \frac{PR(B)}{L_{B}} + \frac{PR(D)}{L_{D}}) = \frac{0.15}{10} + 0,85 * (\frac{0.0658}{3} + \frac{0.0594}{3} + \frac{0.3739}{1}) = 0.3683$ 
+\\ 
+$PR(D) = \frac{\lambda}{N} + (1-\lambda)  (\frac{PR(A)}{L_{A}} + \frac{PR(C)}{L_{C}} + \frac{PR(E)}{L_{E}}) = \frac{0.15}{10} + 0,85 * (\frac{0.0658}{3} + \frac{0.4297}{1} + \frac{0.0353}{1}) = 0.4289$ 
+\\
+$PR(E) = \frac{\lambda}{N} + (1-\lambda)  \frac{PR(B)}{L_{B}} = \frac{0.15}{10} + 0,85 * (\frac{0.0594}{3}) = 0.0318$
