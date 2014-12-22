@@ -1,1 +1,53 @@
 \section*{Aufgabe 3}
+
+\subsection*{a) Skip Pointer}
+
+Es wird zunächst innerhalb der Liste von Skip Pointern genau der Pointer herausgesucht, der unter den Pointern mit einer Dokumentennummer, die kleiner als 80 ist, den größten Wert hat. In diesem Fall also der Pointer (52, 12). \\
+Mittels dieses Wertes aus dem Pointer und der d-Gap der aktuellen Position wird die Dokumentennummer der aktuellen Position rekonstruiert (52 + 5 = 57). Da dieser Wert immernoch kleiner als 80 ist, wird daraufhin der nächste Eintrag in der Liste betrachtet.
+\\Wiederum wird der Dokumentennummer des Vorgängers der d-Gap der aktuellen Position aufaddiert (57 + 23 = 80). Die Dokumentennummer der aktuellen Position ist also 80 und die Suche konnte damit erfolgreich abgeschlossen werden.
+
+\subsection*{b) Term at a Time}
+Annahme: Solange es für höher gerankte Dokumente noch möglich ist, den selben Score zu erreichen wie niedriger gerankte Dokumente, werden diese weiterhin betrachtet.
+Annahme: Verarbeitung erfolgt in der Reihenfolge absteigender Gewichtung der Anfrageterme. \\
+Maximale Vorkommenshäufigkeiten: fish:2, salt:3, water:2, tropical:1
+\ \\
+Ranking nach Verarbeitung von Termliste für \glqq fish":
+\begin{enumerate}
+\item $d_{4}:20$
+\item $d_{6}:20$
+\item $d_{1}:10$
+\item $d_{3}:0$
+\item $d_{5}:0$
+\item $d_{2}:0$
+\end{enumerate}
+Maximal noch zusätzlich erreichbarer Score: 22\\
+\ \\
+Ranking nach Verarbeitung von Termliste für  \glqq salt":
+\begin{enumerate}
+\item $d_{4}:26$
+\item $d_{1}:22$
+\item $d_{6}:20$
+\item $d_{3}:18$
+\item $d_{5}:6$
+\item $d_{2}:0$
+\end{enumerate}
+Maximal noch zusätzlich erreichbarer Score: 4\\
+Die Dokumente 5 und 2 müssen nicht mehr weiter betrachtet werden, da ihre Rankingpositionen sich nicht mehr verändern können. 
+\newpage
+Ranking nach Verarbeitung von Termliste für  \glqq tropical":
+\begin{enumerate}
+\item $d_{4}:26$
+\item $d_{1}:24$
+\item $d_{6}:22$
+\item $d_{3}:20$
+\end{enumerate}
+Maximal noch zusätzlich erreichbarer Score: 2\\
+\ \\
+Ranking nach Verarbeitung von Termliste für  \glqq water":
+\begin{enumerate}
+\item $d_{4}:28$
+\item $d_{1}:26$
+\item $d_{6}:22$
+\item $d_{3}:20$
+\end{enumerate}
+Insgesamt ergibt sich damit das Ranking: $d_{4}, d_{1}, d_{6}, d_{3}, d_{5}, d_{2}$
