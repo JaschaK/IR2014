@@ -1,1 +1,24 @@
 \section*{Aufgabe 4}
+\subsection*{a)}
+
+\subsection*{b)}
+
+\begin{enumerate}
+\item Ein Alternatives Verfahren zum Soundex in der deutschen Sprache ist die Kölner Phonetik.\footnote{Quelle: \url{http://uni-koeln.de/phil-fak/phonetik/Lehre/MA-Arbeiten/Martin_Wilz.pdf}}
+\item Einige Unterschiede zum Soundex sind:
+	\begin{enumerate}
+		\item Es wird auf den Wort Anfang geachtet. Der erste Buchstabe wird auch kodiert. 
+		\item Die Buchstaben werden, nicht wie beim Sondex, in Großbuchstaben sondern in Kleinbuchstaben umgewandelt, da es im Deutschen kein großes scharfes s (ß) gibt.
+		\item Umlaute erhalten den selben wert wie Vokale.
+		\item Es wird auf folgende Buchstaben geachtet, somit kann ein Buchstube je nach Kontext einen anderen Code erhalten. (CH => 4; C=>8)
+		\item Die Länge des Codes ist nicht auf 4 Zeichen beschränkt, da deutsche Wörter in der Regel länger sind als englische. 
+	\end{enumerate}
+\item Ablauf:
+	\begin{enumerate}
+	\item Buchstabenweise Kodierung von links nach rechts entsprechend der Umwandlungstabelle. 
+	\item Entfernen aller mehrfach nebeneinander vorkommenden Ziffern.
+	\item Entfernen aller Codes 0 außer am Anfang.
+	\end{enumerate}
+
+\end{enumerate}
+
