@@ -1,1 +1,82 @@
 \section*{Aufgabe 5}
+\subsection*{Aufgabe 5.1}
+Folgende drei wesentlichen Beiträge werden von den Autoren identifiziert und können daher als solche angesehen werden:
+\begin{itemize}
+\item Die Vorstellung von neuen graphenbasierten Ähnlichkeitsmaßen die die Einschränkungen von existierenden Maßen für die Berechnung des räumlichen Bezugs eines Begriffs (concept) zu einem Ort behandeln.
+\item Die Bereitstellung einer vergleichenden Bewertung der Maße für die Erstellung eines \glqq local lexicon\grqq mit 1.200 Orten. Die Bewertung zeigt, dass die Beobachtung, dass der räumliche Bezug eines Begriffs zu einem Ort in der Wikipedia Link-Struktur verborgen sei, wohlbegründet ist.
+\item Experimente mit Standard Datenmengen zeigen, dass SYNRANK, eins der vorgestellten Maße für die Berechnung des örtlichen Bezugs, es mit vorhandenen Ähnlichkeitsmaßen bei der Bestimmung eines allgemeineren semantischen Bezugs zwischen Wörtern aufnehmen kann.
+\end{itemize}
+\subsection*{Aufgabe 5.2}
+\begin{itemize}
+\item textbasiert - Ein textbasiertes Ähnlichkeitsmaß(ÄM) vergleicht wie der Name schon sagt die Texte an sich, also z.B. bei der Nennung zweier Begriffe wird der Inhalt der Begriffe verglichen. Das genannte Beispiel ESA zeigt diese Vorgehensweise in der Ergebnisliste auf Seite 6 des Papiers. In dieser Liste stehen ausschließlich Begriffe die das Wort \glqq Paris\grqq \ enthalten. Der Nachteil bei ESA (und evtl. textbasierten ÄM im allgemeinen) ist, dass es mehr Berechnungszeit als graphenbasierte ÄM benötigt
+\item graphenbasiert - Bei einem graphenbasierten Ähnlichkeitsmaß muss vor dem Vergleich ein Graph mit Knoten und Kanten erstellt werden. Ein Begriff entspricht einem Knoten und ein Verweis auf einen anderen Begriff einer Kante. Das dem vorgestellten System WLM zugrundeliegende Prinzip ist es, dass zwei Begriffe sich sehr ähnlich sind wenn es viele andere Begriffe gibt die jeweils auf beide verweisen. Ein Problem hierbei ist allerdings, dass Begriffe niedrig bewertet werden auf die allgemein sehr wenig verwiesen wird, auch wenn die eigentliche Ähnlichkeit zu dem zweiten Begriff vllt. sehr hoch ist. Dieses Problem bewältigen die Autoren in ihrem Werk.
+\end{itemize}
+\subsection*{Aufgabe 5.3}
+\subsubsection*{Jacc}
+Annahmen: Es werden keine Mehrfach-Verweise (in Infobox, Intro oder Hauptteil) gezählt. Die Verweise von oder auf die Begriffe selbst werden nicht mitgezählt. Würde ja auch beides keinen Sinn machen.\\
+\ \\
+$J(A, B) = \frac{|A\bigcap B|}{|A\bigcup B|} = \frac{1}{2} $\\
+$J(A, C) = \frac{|A\bigcap C|}{|A\bigcup C|} = \frac{2}{3} $\\
+$J(A, D) = \frac{|A\bigcap D|}{|A\bigcup D|} = \frac{1}{3} $\\
+$J(A, E) = \frac{|A\bigcap E|}{|A\bigcup E|} = \frac{2}{3} $\\
+\ \\
+Ranking:\\
+1. B\\
+2./3. C/E\\
+\subsubsection*{JaccOpt}
+Allgemein:\\
+$K(A) = \{C,D\}$\\
+$K(B) = \{\}$\\
+$K(C) = \{E\}$\\
+$K(D) = \{\}$\\
+$K(E) = \{D\}$\\
+\ \\
+Berechnungen:\\
+$JaccOpt(B,A) = w(B,A) \cdot J(K(A), K(B)) = 3 \cdot \frac{|K(A)\bigcap K(B)|}{|K(A)\bigcup K(B)|} = 3 \cdot \frac{0}{2} = 0 $ \\
+$w(B,A) = 3$ da $B \in K(A)$\\
+\ \\
+$JaccOpt(C,A) = w(C,A) \cdot J(K(A), K(C)) = 3 \cdot \frac{|K(A)\bigcap K(C)|}{|K(A)\bigcup K(C)|} = 3 \cdot \frac{0}{3} = 0 $ \\
+$w(C,A) = 3$ da C einen Verweis auf B macht welcher ein Begriff in $K(A)$ ist.\\
+\ \\
+$JaccOpt(D,A) = w(D,A) \cdot J(K(A), K(D)) = 3 \cdot \frac{|K(A)\bigcap K(D)|}{|K(A)\bigcup K(D)|} = 3 \cdot \frac{0}{2} = 0 $ \\
+$w(D,A) = 3$ da D einen Verweis auf A macht der in der Einleitung von D enthalten ist.\\
+\ \\
+$JaccOpt(E,A) = w(E,A) \cdot J(K(A), K(E)) = 1 \cdot \frac{|K(A)\bigcap K(E)|}{|K(A)\bigcup K(E)|} = 1 \cdot \frac{1}{2} = 0,5 $ \\
+$w(E,A) = 1$ da keine der anderen Prämissen gegeben ist.\\
+\ \\
+Ranking:\\
+1. E\\
+2. B, C, D\\
+\subsubsection*{SYNRANK}
+$SYNRANK(x,y) = \frac{N \cdot f(x, y) \cdot log f(x,y)}{f(x) \cdot f(y) \cdot d(x, y)} $\\
+Annahmen:\\
+$N = 5$\\
+$d(A,B) = 1$\\
+$d(A,C) = 1$\\
+$d(A,D) = 1$\\
+$d(A,E) = 2$\\
+\ \\
+$SYNRANK(A,B) = \frac{N \cdot f(A, B) \cdot log f(A,B)}{f(A) \cdot f(B) \cdot d(A, B)} = \frac{5 \cdot 5 \cdot log\ 5}{25 \cdot 10 \cdot 1} =  \frac{17,47}{250} = 0,0699$\\
+\ \\
+$SYNRANK(A,C) = \frac{N \cdot f(A, C) \cdot log f(A,C)}{f(A) \cdot f(C) \cdot d(A, C)} = \frac{5 \cdot 20 \cdot log\ 20}{25 \cdot 80 \cdot 1} = \frac{130,10}{2000} = 0,0651 $\\
+\ \\
+$SYNRANK(A,D) = \frac{N \cdot f(A, D) \cdot log f(A,D)}{f(A) \cdot f(D) \cdot d(A, D)} = \frac{5 \cdot 10 \cdot log\ 10}{25 \cdot 25 \cdot 1} = \frac{50}{625} = 0,08 $\\
+\ \\
+$SYNRANK(A,E) = \frac{N \cdot f(A, E) \cdot log f(A,E)}{f(A) \cdot f(E) \cdot d(A, E)} = \frac{5 \cdot 12 \cdot log\ 12}{25 \cdot 16 \cdot 2} = \frac{64,75}{800} = 0,0809$\\
+\ \\
+Ranking: (Annahme: Je größer, desto besser)
+1. E\\
+2. D\\
+3. B\\
+4. C\\
+
+\subsection*{Aufgabe 5.4}
+Beide Begriffe beziehen sich auf das Kategorien-Konzept der Wikipedia. Dieses wird hier nicht näher erläutert.
+\begin{itemize}
+\item concept drift - Hierbei handelt es sich um das Problem, dass man von einem Begriff (Wurzelelement) aus in der gleichnaigen Kategorie und Unterkategorien nach Begriffen mit einem Bezug zu eben jenem sucht. Allerdings kann dabei das Problem auftreten, dass in einer Unterkategorie Begriffe auftauchen die rein gar nichts mit dem ursprünglichen Begriff zu tun haben. Im Papier wird hierzu ein gutes Beispiel verwendet, dass es sehr anschaulich erklärt, weswegen auf die Nennung eines eigenen Beispiels verzichtet wird. Das genannte Beispiel bezieht sich auf den Begriff \glqq Washington D.C.\grqq , zu dem die Kategorie \glqq Landmarks in Washington, D.C.\grqq \ gibt, über die (und einigen andere) widerrum man zur Kategorie \glqq Recipients of the Langley Medal\grqq \ gelangt. In dieser sind nun mit Sicherheit Begriffe enthalten die gar nichts mehr oder nur noch sehr wenig mit dem ursprünglichen Begriff zu tun haben.
+\item category incompleteness - Die Kategorien und Begriffe in der Wikipedia entsprechen nicht einer Baumstruktur sondern es sind Verweise in alle Richtungen möglich. Zudem gibt es Begriffe in Kategorien die möglicherweise auch einen Bezug zu Begriffen in Eltern-Kategorien haben, mit dem Unterschied, dass diese eben allgemeiner sind. Diese beiden Punkte beschreiben die \glqq category incompleteness \grqq . 
+\end{itemize}
+\subsection*{Aufgabe 5.5}
+\textit{Jacc} ist ein simples Maß, das lediglich gemeinsame Nachbarn zählt, es eignet sich daher eher um ein Maß zur Bewertung des semantischen als des örtlichen Bezugs dar. Hierzu wurde von den Autoren \textit{JaccOpt} vorgeschlagen, welches zwar ähnlich vorgeht, sich aber nur auf Informationen in der Einleitung oder der Infobox eines Wikipedia-Artikels bezieht. \textit{Green} und \textit{WLM} sind zwei existierende graphenbasierte Maße und bei \textit{ESA} handelt es sich um ein textbasiertes Maß. \textit{SYNRANK} ist ein von den Autoren erstelltes Maß welches sich aus drei Komponenten zusammensetzt. \textit{CATEGORY} ist ein System das mit dem Kategorien-Konzept der Wikipedia arbeitet um Bezüge zu finden.\\
+Der Graph setzt die Precision ins Verhältnis zum Wert von k (Anzahl der am besten bewerteten Begriffe). Die Precision misst wie viele der k Begriffe tatsächlich einen örtlichen Bezug zum Ursprungsbegriff haben. Dabei wurde ein halbautomatisiertes Konzept verwendet. Bei kleiner Anzahl der Begriffe und kleinem k konnte dies manuell von Menschen gemacht werden. Bei größerer Anzahl oder größerem k wurde dies automatisiert durchgeführt. Hierzu wurde die räumliche Entfernung zweier Begriffe festgelegt. Soweit vorhanden wurden die Koordinaten eines Begriffs oder die räumliche Zuordnung (z.B. Andreas Starke -> Bamberg) genutzt. Wenn beides nicht vorhanden war, wurde einem Begriff mit der räumlichen Zuordnung der benachbarten Begriffe die Entfernung zum Wurzelbegriff zugeteilt. Nachdem dies erfolgt ist, blieben in der Regel nur noch wenige (im Schnitt 130 von 2000) Begriffe deren räumlicher Bezug durch Menschen identifiziert werden musste.\\
+Im Graphen ist erkennbar, dass die Maße \textit{Green} und \textit{Jacc} für alle Werte von k sehr schlecht abschneiden. Die anderen Maße sind für Werte von k $\leq$ 500 alle noch relativ gut, wobei \textit{JaccOpt} für größere Werte sehr viel schlechter wird und die restlichen Maße bis auf \textit{Category} ebenfalls für Werte von k $\geq $ 1000 massiv an Precision einbüßen.
